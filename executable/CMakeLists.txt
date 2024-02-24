@@ -16,6 +16,8 @@ set(CMAKE_AUTOUIC ON)
 ## Sources
 set(HDRS
     "mainwindow.h"
+    "listModel.h"
+    "listDelegate.h"
 	)
 
 set(UI
@@ -25,6 +27,8 @@ set(UI
 set(SRCS
     "main.cpp"
     "mainwindow.cpp"
+    "listModel.cpp"
+    "listDelegate.cpp"
 	)
 
 set(PROJECT_SOURCES ${SRCS} ${HDRS} ${UI})

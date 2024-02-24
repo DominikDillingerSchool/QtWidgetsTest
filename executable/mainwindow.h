@@ -1,7 +1,9 @@
 #pragma once
 
+#include <QListWidget>
+#include <QListWidgetItem>
 #include <QMainWindow>
-#include <QVector>
+
 
 QT_BEGIN_NAMESPACE
 namespace Ui
