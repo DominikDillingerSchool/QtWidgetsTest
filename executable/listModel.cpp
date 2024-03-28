@@ -36,8 +36,14 @@ QVariant ListModel::data(const QModelIndex &index, int role) const
 
 void ListModel::appendEntry(const QString &name)
 {
+    const QString trimmedText = name.trimmed();
+    if (trimmedText.isEmpty())
+    {
+        return;
+    }
+
     beginInsertRows(QModelIndex(), m_entries.count(), m_entries.count());
-    m_entries.append({m_idCounter, name});
+    m_entries.append({m_idCounter, trimmedText});
     m_idCounter++;
     endInsertRows();
 }
