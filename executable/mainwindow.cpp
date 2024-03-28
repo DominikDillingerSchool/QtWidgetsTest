@@ -11,19 +11,12 @@ MainWindow::MainWindow(QMainWindow *parent) : QMainWindow(parent), ui(new Ui::Ma
     ListModel *model = new ListModel(this);
     ListDelegate *delegate = new ListDelegate(this);
 
-    model->appendEntry("Test123");
-
     ui->listView->setModel(model);
     ui->listView->setItemDelegate(delegate);
 
     connect(ui->BTN_Add, &QPushButton::clicked, this, [&](bool) {
         const QString text = ui->textEdit->toPlainText();
-        const QString trimmedText = text.trimmed();
-        if (trimmedText.isEmpty())
-        {
-            return;
-        }
-        dynamic_cast<ListModel *>(ui->listView->model())->appendEntry(trimmedText);
+        dynamic_cast<ListModel *>(ui->listView->model())->appendEntry(text);
     });
 
     connect(delegate, &ListDelegate::deleteClicked, this, [&](const unsigned int &entryId) {

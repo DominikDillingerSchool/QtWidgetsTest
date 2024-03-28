@@ -8,9 +8,6 @@
 #include <QVBoxLayout>
 #include <QWidget>
 
-#include <QDebug>
-#include <iostream>
-
 ListDelegate::ListDelegate(QObject *parent) : QStyledItemDelegate(parent)
 {
 }
@@ -22,8 +19,8 @@ void ListDelegate::paint(QPainter *painter, const QStyleOptionViewItem &option, 
 
     // Calculate areas
     const QRect totalArea = option.rect;
-    const QRect textArea = totalArea.adjusted(0, 0, -totalArea.width() * 0.2, 0);
-    const QRect buttonArea = totalArea.adjusted(totalArea.width() * 0.8, 0, 0, 0);
+    const QRect textArea = totalArea.adjusted(0, 0, -totalArea.width() * 0.25, 0);
+    const QRect buttonArea = totalArea.adjusted(totalArea.width() * 0.75, 0, 0, 0);
 
     // Draw text
     const QString entryName = index.data(Qt::UserRole + 1).toString();
@@ -55,7 +52,7 @@ bool ListDelegate::editorEvent(QEvent *event, QAbstractItemModel *model, const Q
                                const QModelIndex &index)
 {
     const QMouseEvent *mouseEvent = static_cast<QMouseEvent *>(event);
-    const QRect deleteButtonRect = option.rect.adjusted(option.rect.width() * 0.8, 0, 0, 0);
+    const QRect deleteButtonRect = option.rect.adjusted(option.rect.width() * 0.75, 0, 0, 0);
 
     if (event->type() == QEvent::MouseButtonRelease)
     {
