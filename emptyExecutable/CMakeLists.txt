@@ -72,33 +72,3 @@ endif()
 ## Install
 install(TARGETS ${PROJECT_NAME}EmptyExecutable DESTINATION executable)
 install(FILES $<TARGET_RUNTIME_DLLS:${PROJECT_NAME}EmptyExecutable> DESTINATION executable)
-
-# Find the C++ compiler path
-find_program(CMAKE_CXX_COMPILER NAMES c++ g++ cl)
-
-# Check if the C++ compiler was found
-if(CMAKE_CXX_COMPILER)
-  # Get the directory where the C++ compiler is located
-  get_filename_component(COMPILER_PATH "${CMAKE_CXX_COMPILER}" DIRECTORY)
-  message(STATUS "Found C++ compiler: ${CMAKE_CXX_COMPILER}")
-else()
-  message(FATAL_ERROR "Could not find C++ compiler")
-endif()
-#[[
-install(TARGETS ${PROJECT_NAME}EmptyExecutable RUNTIME_DEPENDENCIES
-  PRE_EXCLUDE_REGEXES "api-ms-" "ext-ms-"
-  POST_EXCLUDE_REGEXES ".*system32/.*\\.dll"
-  DIRECTORIES ${COMPILER_PATH}
-  DESTINATION executable
-)
-]]
-
-# Get the path to the Qt shared platforms directory
-get_target_property(QT_EXECUTABLE_LOCATION Qt${QT_DEFAULT_MAJOR_VERSION}::Core LOCATION)
-if(QT_EXECUTABLE_LOCATION STREQUAL "QT_EXECUTABLE_LOCATION-NOTFOUND")
-  message(FATAL_ERROR "Could not find QT exectuable location. Missing variable QT_EXECUTABLE_LOCATION.")
-endif()
-message(STATUS "Found QT_EXECUTABLE_LOCATION ${QT_EXECUTABLE_LOCATION}")
-set(QT_SHARE_PLATFORMS_DIR "${QT_EXECUTABLE_LOCATION}/../../share/qt${QT_DEFAULT_MAJOR_VERSION}/plugins/platforms")
-
-install(DIRECTORY "${QT_SHARE_PLATFORMS_DIR}" DESTINATION executable)
