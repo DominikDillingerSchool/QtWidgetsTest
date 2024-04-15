@@ -26,7 +26,7 @@ MainWindow::MainWindow(QMainWindow *parent) : QMainWindow(parent), ui(new Ui::Ma
         dynamic_cast<ListModel *>(ui->listView->model())->deleteEntry(entryId);
     });
 
-    QShortcut *shortcut = new QShortcut(QKeySequence(Qt::CTRL + Qt::SHIFT + Qt::Key_Q), this);
+    QShortcut *shortcut = new QShortcut(QKeySequence(Qt::CTRL | Qt::SHIFT | Qt::Key_Q), this);
     connect(shortcut, &QShortcut::activated, this, [&]() {
         const QString benchmarkString = Benchmark::benchmarks(dynamic_cast<ListModel *>(ui->listView->model()));
         ui->textEdit->setText(benchmarkString);
