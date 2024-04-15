@@ -18,6 +18,7 @@ set(HDRS
     "mainwindow.h"
     "listModel.h"
     "listDelegate.h"
+    "benchmark.h"
 	)
 
 set(UI
@@ -29,6 +30,7 @@ set(SRCS
     "mainwindow.cpp"
     "listModel.cpp"
     "listDelegate.cpp"
+    "benchmark.cpp"
 	)
 
 set(PROJECT_SOURCES ${SRCS} ${HDRS} ${UI})
@@ -50,7 +52,7 @@ target_include_directories(${PROJECT_NAME}Executable PRIVATE ${CMAKE_CURRENT_SOU
 if(CMAKE_CXX_COMPILER_ID MATCHES "Clang")
   target_link_options(${PROJECT_NAME}Executable PRIVATE -stdlib=libc++ -lpthread -g)
 elseif(MSVC)
-  target_link_options(${PROJECT_NAME}Executable PRIVATE "/MT")
+  target_compile_options(${PROJECT_NAME}Executable PRIVATE "/MT")
 else()
   target_link_options(${PROJECT_NAME}Executable PRIVATE -static-libstdc++ -static-libgcc -g)
 endif()

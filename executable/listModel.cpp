@@ -61,3 +61,11 @@ void ListModel::deleteEntry(const unsigned int &idToDelete)
         }
     }
 }
+
+Q_INVOKABLE void ListModel::clearModel()
+{
+    beginResetModel();
+    m_idCounter = 0;
+    m_entries.clear();
+    endResetModel();
+}

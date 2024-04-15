@@ -46,7 +46,7 @@ target_include_directories(${PROJECT_NAME}EmptyExecutable PRIVATE ${CMAKE_CURREN
 if(CMAKE_CXX_COMPILER_ID MATCHES "Clang")
   target_link_options(${PROJECT_NAME}EmptyExecutable PRIVATE -stdlib=libc++ -lpthread -g)
 elseif(MSVC)
-  target_link_options(${PROJECT_NAME}EmptyExecutable PRIVATE "/MT")
+  target_compile_options(${PROJECT_NAME}EmptyExecutable PRIVATE "/MT")
 else()
   target_link_options(${PROJECT_NAME}EmptyExecutable PRIVATE -static-libstdc++ -static-libgcc -g)
 endif()

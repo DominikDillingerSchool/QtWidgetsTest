@@ -23,6 +23,7 @@ class ListModel : public QAbstractListModel
 
     Q_INVOKABLE void appendEntry(const QString &name);
     Q_INVOKABLE void deleteEntry(const unsigned int &idToDelete);
+    Q_INVOKABLE void clearModel();
 
   private:
     struct Entry
