@@ -83,7 +83,7 @@ std::string Benchmark::benchmark(ListModel *model, const unsigned int elementCou
     }
 
     auto endPoint = std::chrono::high_resolution_clock::now();
-    const auto duration = std::chrono::duration_cast<std::chrono::milliseconds>(endPoint - startPoint).count();
+    const auto duration = std::chrono::duration_cast<std::chrono::nanoseconds>(endPoint - startPoint).count();
     const size_t memoryUsage = getCurrentMemoryUsage();
 
     std::stringstream stream;
